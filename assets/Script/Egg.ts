@@ -8,13 +8,31 @@
 const {ccclass, property} = cc._decorator;
 
 @ccclass
-export default class NewClass extends cc.Component {
+export default class Egg extends cc.Component {
 
     @property(cc.Label)
     label: cc.Label = null;
 
     @property
     text: string = 'hello';
+
+    @property({
+        type: cc.Integer
+    })
+    pickRadius = 1;
+
+    getPlayerDistance () {
+        //playerPos
+        //dist
+        var dist = 0;
+        return dist;
+    }
+
+    onPicked() {
+        //Refresh Spawn
+        //gain score
+        this.node.destroy;
+    }
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -24,5 +42,13 @@ export default class NewClass extends cc.Component {
 
     }
 
-    // update (dt) {}
+    update (dt) {
+        if (this.getPlayerDistance() < this.pickRadius) {
+            this.onPicked();
+            return;
+        }
+
+
+
+    }
 }
