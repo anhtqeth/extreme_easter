@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "3c166e25-fb41-4a4d-85dc-b543e65b5872",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 24,
+  "height": 24,
+  "platformSettings": {},
+  "subMetas": {
+    "EasterEgg2": {
+      "ver": "1.0.4",
+      "uuid": "a3414f43-dfb4-4e92-bfc9-c74d831ea602",
+      "rawTextureUuid": "3c166e25-fb41-4a4d-85dc-b543e65b5872",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -3,
+      "trimX": 7,
+      "trimY": 8,
+      "width": 11,
+      "height": 14,
+      "rawWidth": 24,
+      "rawHeight": 24,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
