@@ -14,7 +14,14 @@ export default class Server extends cc.Component {
     //TODO - Spawn random color eggs
 
     @property(cc.Prefab)
-    eggPrefab: cc.Prefab = null;
+    blueEggPrefab: cc.Prefab = null;
+    
+    @property(cc.Prefab)
+    redEggPrefab: cc.Prefab = null;
+    
+    @property(cc.Prefab)
+    chocoEggPrefab: cc.Prefab = null;
+
 
     @property(cc.Node)
     ground: cc.Node = null;
@@ -35,55 +42,71 @@ export default class Server extends cc.Component {
     maxEgg: number = 0;
 
     onLoad () {
-        this.timer = 0;
+        // this.timer = 0;
+
+        let currentEgg = 0;
+        if (currentEgg < this.maxEgg) {
+            this.genNewEgg();
+            currentEgg +=1;
+        }
         
-        this.genNewEgg();
+        // this.genNewEgg();
         this.playerScore = 0;
     }
 
-    // 1. Count number of egg < 6
-    // 2. Spawn new egg (random color) (random location)
-    // 3. If egg < 6 Back to 2
-
-    // Record Players Score
-    // Show winner when timer end
     genNewEgg () {
         //Random Color Egg
         let eggColors: string[] = ['cho','blue','red'];
-
-        let newEgg = cc.instantiate(this.eggPrefab);
-        this.node.addChild(newEgg);
-
-        for (let num of eggColors) {
+        for (let color of eggColors) {
+            let newEgg = this.randEggColor(color);
             newEgg.setPosition(this.getNewEggPosition());
+            this.node.addChild(newEgg);
         }
-        //newEgg.setPosition(this.getNewEggPosition());
-        newEgg.getComponent('Egg').game = this;
+        // newEgg.getComponent('Egg').game = this;
     }
     
+    randEggColor(color) {
+        let newEgg;
+        switch(color) {
+            case 'cho':
+                newEgg = cc.instantiate(this.chocoEggPrefab);
+                break;
+            case 'blue':
+                newEgg = cc.instantiate(this.blueEggPrefab);
+                break;
+            case 'red':
+                newEgg = cc.instantiate(this.redEggPrefab);
+                break;
+        }
+        return newEgg;
+    }
+
+    //Randomly set position of new Egg
     getNewEggPosition() {
         let randX = 0;
         let randY = 0;
         //Modify this to get correct tile position
+        // Math.floor(Math.random() * 6) + 1  
 
         randY = this.node.height/2; //this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50; // A random square tile on map
-        let maxX = this.node.width/2;
+        let maxX = this.node.width;
 
-        randX = (Math.random() - 0.5) * 2 * maxX;
+        randX = (Math.random() * 1360) + 1;
         return cc.v2(randY,randX);
     }
     // Send Update to client
     sendUpdate () {
 
+
     }
     
     // LIFE-CYCLE CALLBACKS:
-
-   
 
     start () {
 
     }
 
-    // update (dt) {}
+    update (dt) {
+        
+    }
 }

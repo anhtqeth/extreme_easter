@@ -70,6 +70,10 @@ export default class Player extends cc.Component {
 
     }
 
+    ani(direction) {
+        // Load Appropriate animation base on direction?
+    }
+
     update (dt) {
         
         if (this.movLeft) {
@@ -95,8 +99,6 @@ export default class Player extends cc.Component {
             // if speed reach limit, use max speed with current direction
             this.ySpeed = this.maxMoveSpeed * this.ySpeed / Math.abs(this.ySpeed);
         }
-
-
         // update the position of the main character according to the current speed
         this.node.x += this.xSpeed * dt;
         this.node.y += this.ySpeed * dt;

@@ -1,6 +1,6 @@
 {
   "ver": "2.3.4",
-  "uuid": "3c166e25-fb41-4a4d-85dc-b543e65b5872",
+  "uuid": "99fb94ad-87d4-43cb-99f6-4a44a7c29c60",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -11,18 +11,18 @@
   "height": 24,
   "platformSettings": {},
   "subMetas": {
-    "EasterEgg2": {
+    "choco_egg": {
       "ver": "1.0.4",
-      "uuid": "a3414f43-dfb4-4e92-bfc9-c74d831ea602",
-      "rawTextureUuid": "3c166e25-fb41-4a4d-85dc-b543e65b5872",
+      "uuid": "e1c28763-b478-44f1-809c-8750ff643af8",
+      "rawTextureUuid": "99fb94ad-87d4-43cb-99f6-4a44a7c29c60",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
       "offsetX": 0.5,
       "offsetY": -3,
-      "trimX": 7,
+      "trimX": 5,
       "trimY": 8,
-      "width": 11,
+      "width": 15,
       "height": 14,
       "rawWidth": 24,
       "rawHeight": 24,
