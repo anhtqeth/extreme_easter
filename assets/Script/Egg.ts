@@ -10,16 +10,9 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Egg extends cc.Component {
 
-    @property(cc.Label)
-    label: cc.Label = null;
 
     @property
-    text: string = 'hello';
-
-    @property({
-        type: cc.Integer
-    })
-    pickRadius = 1;
+    pickRadius: number = 1;
 
     getPlayerDistance () {
         //playerPos

@@ -54,18 +54,19 @@ export default class Server extends cc.Component {
         let newEgg = cc.instantiate(this.eggPrefab);
         this.node.addChild(newEgg);
 
-
-        newEgg.setPosition(this.getNewEggPosition());
+        for (let num of eggColors) {
+            newEgg.setPosition(this.getNewEggPosition());
+        }
+        //newEgg.setPosition(this.getNewEggPosition());
         newEgg.getComponent('Egg').game = this;
-
     }
     
     getNewEggPosition() {
         let randX = 0;
         let randY = 0;
-        
-        randY = this.node.height/2;//this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50; // A random square tile on map
-        
+        //Modify this to get correct tile position
+
+        randY = this.node.height/2; //this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50; // A random square tile on map
         let maxX = this.node.width/2;
 
         randX = (Math.random() - 0.5) * 2 * maxX;
