@@ -13,9 +13,6 @@ export default class Server extends cc.Component {
     //TODO - Interval Spawning Egg (0.1 - 0.5 secs)
     //TODO - Spawn random color eggs
 
-    @property(cc.Label)
-    label: cc.Label = null;
-
     @property(cc.Prefab)
     eggPrefab: cc.Prefab = null;
 
@@ -28,13 +25,29 @@ export default class Server extends cc.Component {
     @property(cc.Label)
     scoreDisplay: cc.Node = null;
 
+    @property
+    timer: number = 0;
+
+    @property
+    playerScore: number = 0;
+
+    @property
+    maxEgg: number = 0;
+
+    onLoad () {
+        this.timer = 0;
+        
+        this.genNewEgg();
+        this.playerScore = 0;
+    }
+
     // 1. Count number of egg < 6
     // 2. Spawn new egg (random color) (random location)
     // 3. If egg < 6 Back to 2
 
     // Record Players Score
     // Show winner when timer end
-    spawnNewEgg () {
+    genNewEgg () {
         //Random Color Egg
         let eggColors: string[] = ['cho','blue','red'];
 
@@ -48,9 +61,15 @@ export default class Server extends cc.Component {
     }
     
     getNewEggPosition() {
+        let randX = 0;
+        let randY = 0;
+        
+        randY = this.node.height/2;//this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50; // A random square tile on map
+        
+        let maxX = this.node.width/2;
 
-        //
-        return cc.v2(0,0);
+        randX = (Math.random() - 0.5) * 2 * maxX;
+        return cc.v2(randY,randX);
     }
     // Send Update to client
     sendUpdate () {
@@ -59,7 +78,7 @@ export default class Server extends cc.Component {
     
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {}
+   
 
     start () {
 
