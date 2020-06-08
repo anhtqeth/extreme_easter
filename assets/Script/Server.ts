@@ -43,25 +43,30 @@ export default class Server extends cc.Component {
 
     onLoad () {
         // this.timer = 0;
-
         let currentEgg = 0;
-        if (currentEgg < this.maxEgg) {
+        for(let i = 0;i <= this.maxEgg; i++) {
             this.genNewEgg();
-            currentEgg +=1;
+            currentEgg += 1;
         }
-        
-        // this.genNewEgg();
-        this.playerScore = 0;
+
     }
 
+    // Receive current game state from local
+    recGameState() {
+
+    }
     genNewEgg () {
         //Random Color Egg
         let eggColors: string[] = ['cho','blue','red'];
-        for (let color of eggColors) {
-            let newEgg = this.randEggColor(color);
-            newEgg.setPosition(this.getNewEggPosition());
-            this.node.addChild(newEgg);
-        }
+        let randColor = eggColors[Math.floor(Math.random()*eggColors.length)];
+        let newEgg = this.randEggColor(randColor);
+        newEgg.setPosition(this.getNewEggPosition());
+        this.node.addChild(newEgg);
+        // for (let color of eggColors) {
+        //     let newEgg = this.randEggColor(color);
+        //     newEgg.setPosition(this.getNewEggPosition());
+        //     this.node.addChild(newEgg);
+        // }
         // newEgg.getComponent('Egg').game = this;
     }
     
@@ -81,22 +86,23 @@ export default class Server extends cc.Component {
         return newEgg;
     }
 
-    //Randomly set position of new Egg
+    //Randomly set position of new Egg base on Tilemap
+    //Send this location to Client
     getNewEggPosition() {
         let randX = 0;
         let randY = 0;
         //Modify this to get correct tile position
-        // Math.floor(Math.random() * 6) + 1  
-
-        randY = this.node.height/2; //this.groundY + Math.random() * this.player.getComponent('Player').jumpHeight + 50; // A random square tile on map
+        console.log('Y value: ' + randY);
+        randY    = this.node.height/2;  // A random square tile on map
         let maxX = this.node.width;
-
+        console.log('Max X value: ' + maxX);
         randX = (Math.random() * 1360) + 1;
-        return cc.v2(randY,randX);
+        console.log('X Value' + randX);
+        
+        return cc.v2(randX, randY); // Should be correspond to Tile location
     }
     // Send Update to client
     sendUpdate () {
-
 
     }
     
