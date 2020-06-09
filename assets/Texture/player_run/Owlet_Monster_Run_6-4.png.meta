@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "e8704a60-e381-4887-b929-fe6fffd51b69",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 32,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Owlet_Monster_Run_6-4": {
+      "ver": "1.0.4",
+      "uuid": "6fe1b188-fbec-481c-aa71-03f99b2769cd",
+      "rawTextureUuid": "e8704a60-e381-4887-b929-fe6fffd51b69",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": -0.5,
+      "offsetY": -2.5,
+      "trimX": 5,
+      "trimY": 6,
+      "width": 21,
+      "height": 25,
+      "rawWidth": 32,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

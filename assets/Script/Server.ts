@@ -44,11 +44,10 @@ export default class Server extends cc.Component {
     onLoad () {
         // this.timer = 0;
         let currentEgg = 0;
-        for(let i = 0;i <= this.maxEgg; i++) {
+        for(let i = 0;i < this.maxEgg; i++) {
             this.genNewEgg();
             currentEgg += 1;
         }
-
     }
 
     // Receive current game state from local
@@ -92,13 +91,16 @@ export default class Server extends cc.Component {
         let randX = 0;
         let randY = 0;
         //Modify this to get correct tile position
-        console.log('Y value: ' + randY);
-        randY    = this.node.height/2;  // A random square tile on map
-        let maxX = this.node.width;
-        console.log('Max X value: ' + maxX);
-        randX = (Math.random() * 1360) + 1;
-        console.log('X Value' + randX);
-        
+        // console.log('Y value: ' + randY);
+        let maxY = 640/2;  // A random tile on map
+        console.log('max Y: ' + this.node.height/2);
+        let maxX = 960/2;
+        console.log('max X: ' + this.node.width/2);
+
+        // console.log('Max X value: ' + maxX);
+        randX = (Math.random() * Math.floor(maxX));
+        randY = (Math.random() * Math.floor(maxY));
+        // console.log('X Value' + randX);
         return cc.v2(randX, randY); // Should be correspond to Tile location
     }
     // Send Update to client
