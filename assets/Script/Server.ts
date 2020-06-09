@@ -22,6 +22,11 @@ export default class Server extends cc.Component {
     @property(cc.Prefab)
     chocoEggPrefab: cc.Prefab = null;
 
+    @property(cc.Prefab)
+    bluePlayerPrefab: cc.Prefab = null;
+
+    @property(cc.Prefab)
+    pinkPlayerPrefab: cc.Prefab = null;
 
     @property(cc.Node)
     ground: cc.Node = null;
@@ -41,6 +46,8 @@ export default class Server extends cc.Component {
     @property
     maxEgg: number = 0;
 
+    noPlayers: number = 0; 
+
     onLoad () {
         // this.timer = 0;
         let currentEgg = 0;
@@ -48,6 +55,18 @@ export default class Server extends cc.Component {
             this.genNewEgg();
             currentEgg += 1;
         }
+    }
+
+    //Randomly generate new Remote Player
+    playerInit() {
+        let playerColors: string[] = ['blue','pink'];
+        let randColor = playerColors[Math.floor(Math.random()*playerColors.length)];
+        let newPlayer: cc.Node = null;
+        if (randColor == 'blue')
+            newPlayer = cc.instantiate(this.bluePlayerPrefab);
+            else
+            newPlayer = cc.instantiate(this.pinkPlayerPrefab);
+        return newPlayer
     }
 
     // Receive current game state from local
@@ -61,16 +80,10 @@ export default class Server extends cc.Component {
         let newEgg = this.randEggColor(randColor);
         newEgg.setPosition(this.getNewEggPosition());
         this.node.addChild(newEgg);
-        // for (let color of eggColors) {
-        //     let newEgg = this.randEggColor(color);
-        //     newEgg.setPosition(this.getNewEggPosition());
-        //     this.node.addChild(newEgg);
-        // }
-        // newEgg.getComponent('Egg').game = this;
     }
     
     randEggColor(color) {
-        let newEgg;
+        let newEgg: cc.Node;
         switch(color) {
             case 'cho':
                 newEgg = cc.instantiate(this.chocoEggPrefab);
@@ -85,7 +98,6 @@ export default class Server extends cc.Component {
         return newEgg;
     }
 
-    //Randomly set position of new Egg base on Tilemap
     //Send this location to Client
     getNewEggPosition() {
         let randX = 0;

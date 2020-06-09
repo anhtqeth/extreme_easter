@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "fdfe7980-a0a4-43c6-bb2a-048bb3de7778",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 31,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Owlet_Monster_Climb_4-3": {
+      "ver": "1.0.4",
+      "uuid": "5609fbd0-fbdb-458c-b8ad-e035541f9e5e",
+      "rawTextureUuid": "fdfe7980-a0a4-43c6-bb2a-048bb3de7778",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1.5,
+      "offsetY": -1.5,
+      "trimX": 6,
+      "trimY": 3,
+      "width": 22,
+      "height": 29,
+      "rawWidth": 31,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

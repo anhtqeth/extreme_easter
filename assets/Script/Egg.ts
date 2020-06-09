@@ -4,15 +4,23 @@ const {ccclass, property} = cc._decorator;
 @ccclass
 export default class Egg extends cc.Component {
 
-
     @property
     pickRadius: number = 1;
-
+    
     getPlayerDistance () {
         //playerPos
         //dist
-        var dist = 0;
-        return dist;
+        
+        
+        // var dist = this.node.position.sub(playerPos).mag();
+        // return dist;
+        return 0;
+    }
+
+    onCollisionEnter(other, self) {
+        //play audio
+    }
+    onCollisionExit(other,self){
     }
 
     onPicked() {
@@ -37,5 +45,6 @@ export default class Egg extends cc.Component {
             this.onPicked();
             return;
         }
+        cc.scaleBy(2,2);
     }
 }

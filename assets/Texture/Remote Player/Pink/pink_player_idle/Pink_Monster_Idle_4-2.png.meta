@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "0a0af911-12e3-42b2-947b-1b0381ab691e",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 31,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Pink_Monster_Idle_4-2": {
+      "ver": "1.0.4",
+      "uuid": "86ce179a-eaee-4b9f-915c-2c3abc2708ed",
+      "rawTextureUuid": "0a0af911-12e3-42b2-947b-1b0381ab691e",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 1.5,
+      "offsetY": -1.5,
+      "trimX": 8,
+      "trimY": 3,
+      "width": 18,
+      "height": 29,
+      "rawWidth": 31,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

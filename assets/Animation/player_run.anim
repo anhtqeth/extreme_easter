@@ -3,9 +3,9 @@
   "_name": "player_run",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.3888888888888889,
-  "sample": 18,
-  "speed": 1,
+  "_duration": 0.46153846153846156,
+  "sample": 13,
+  "speed": 0.8,
   "wrapMode": 2,
   "curveData": {
     "comps": {
@@ -18,31 +18,31 @@
             }
           },
           {
-            "frame": 0.05555555555555555,
+            "frame": 0.07692307692307693,
             "value": {
               "__uuid__": "b70bdc40-8ec4-4792-bbbd-ce0e273002f9"
             }
           },
           {
-            "frame": 0.16666666666666666,
+            "frame": 0.15384615384615385,
             "value": {
               "__uuid__": "fa541a2b-9da7-47de-b0ac-be94866c2505"
             }
           },
           {
-            "frame": 0.2222222222222222,
+            "frame": 0.23076923076923078,
             "value": {
               "__uuid__": "11a2e628-0bbe-4e2d-b68f-7ebd33d32212"
             }
           },
           {
-            "frame": 0.2777777777777778,
+            "frame": 0.3076923076923077,
             "value": {
               "__uuid__": "e3de05e1-2c2a-41c3-85f4-04a4922dc759"
             }
           },
           {
-            "frame": 0.3333333333333333,
+            "frame": 0.38461538461538464,
             "value": {
               "__uuid__": "6fe1b188-fbec-481c-aa71-03f99b2769cd"
             }

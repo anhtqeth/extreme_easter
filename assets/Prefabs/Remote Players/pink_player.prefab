@@ -13,7 +13,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "choco_egg",
+    "_name": "pink_player",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -21,10 +21,16 @@
     "_components": [
       {
         "__id__": 2
+      },
+      {
+        "__id__": 3
+      },
+      {
+        "__id__": 4
       }
     ],
     "_prefab": {
-      "__id__": 3
+      "__id__": 5
     },
     "_opacity": 255,
     "_color": {
@@ -36,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 35,
-      "height": 35
+      "width": 32,
+      "height": 32
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -48,8 +54,8 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
-        0,
+        -95.782,
+        120.454,
         0,
         0,
         0,
@@ -89,7 +95,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "e1c28763-b478-44f1-809c-8750ff643af8"
+      "__uuid__": "4e5cee69-505d-4b08-b8d8-05913132f500"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -106,6 +112,40 @@
     "_id": ""
   },
   {
+    "__type__": "a1c32obj9ZDgbi4FW47gLXN",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "difficulty": 0,
+    "speed": 0,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.Animation",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "_defaultClip": {
+      "__uuid__": "9c73fe99-debf-4157-b158-4522d2b66b5c"
+    },
+    "_clips": [
+      {
+        "__uuid__": "83383feb-52f6-4b20-b673-7c504178c2a2"
+      },
+      {
+        "__uuid__": "9c73fe99-debf-4157-b158-4522d2b66b5c"
+      }
+    ],
+    "playOnLoad": true,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
@@ -113,7 +153,7 @@
     "asset": {
       "__id__": 0
     },
-    "fileId": "dbukvd0WdMqaSRaovfrp3J",
+    "fileId": "04RyR73+lFepXg/ZABQbPz",
     "sync": false
   }
 ]

@@ -5,7 +5,10 @@ const {ccclass, property} = cc._decorator;
 export default class Player extends cc.Component {
 
     @property()
-    maxMoveSpeed: number = 0;
+    public maxMoveSpeed: number = 0;
+
+    @property(cc.Animation)
+    anim: cc.Animation = null;
 
     movLeft:  boolean = false;
     movRight: boolean = false;
@@ -32,22 +35,26 @@ export default class Player extends cc.Component {
     onKeyDown (event) {
         switch(event.keyCode) {
             case cc.macro.KEY.left:
+                this.loadAnimation('L');
                 this.movLeft = true;
                 break;
             case cc.macro.KEY.right:
                 this.movRight = true;
+                this.loadAnimation('R'); // because of the break it not loop
                 break;
             case cc.macro.KEY.up:
                 this.movUp    = true;
+                this.loadAnimation('U');
                 break;
             case cc.macro.KEY.down:
                 this.movDown = true;
+                this.loadAnimation('D');
                 break;
         }
-
     }
 
     onKeyUp (event) {
+        this.getComponent(cc.Animation).play('player_idle');
         switch(event.keyCode) {
             case cc.macro.KEY.left:
                 this.movLeft = false;
@@ -56,52 +63,68 @@ export default class Player extends cc.Component {
                 this.movRight = false;
                 break;
             case cc.macro.KEY.up:
-                this.movUp    = false;
+                this.movUp = false;
                 break;
             case cc.macro.KEY.down:
-                this.movDown  = false;
+                this.movDown = false;
                 break;
         }
     }
-    
 
     start () {
 
     }
 
-    loadAnimation(direction) {
+    loadAnimation(direction: string) {
         // Load Appropriate animation base on direction
         // Left/ Right animation 
         // Up/ Down animation
+        switch(direction) {
+            case 'U':
+                this.getComponent(cc.Animation).play('player_up');
+                break;
+            case 'D':
+                this.getComponent(cc.Animation).play('player_run');
+                break;
+            case 'L':
+                this.getComponent(cc.Animation).play('player_run');
+                break;
+            case 'R':
+                this.getComponent(cc.Animation).play('player_run');
+                break;
+        }
     }
 
+    collEggs(other,self) {
+        other.node.removeFromParent();
+    }
+
+    onCollisionEgg (other,self) {
+        console.log("Colliding egg");
+        //++ Score
+    }
+
+    onCollisionEnter(other,self) {
+        console.log('hitting something');
+        other.node.removeFromParent();
+    }
+
+
     update (dt) {
+        if(this.movUp){
+            this.node.y += 2;
+        }
+        if (this.movDown) {
+            this.node.y -= 2;
+        }
+        if (this.movLeft) {
+            this.node.scaleX = -Math.abs(this.node.scaleX);
+            this.node.x -=2;
+        }
+        if (this.movRight) {
+            this.node.scaleX = Math.abs(this.node.scaleX);
+            this.node.x +=2;
+        }
         
-        // if (this.movLeft) {
-        //     this.xSpeed -= this.accel * dt;
-        // } else if (this.movRight) {
-        //     this.xSpeed += this.accel * dt;
-        // }
-
-        // if (this.movDown) {
-        //     this.ySpeed -= this.accel * dt;
-        // } else if (this.movUp) {
-        //     this.ySpeed += this.accel * dt;
-        // }
-
-        
-        // // restrict the movement speed of the main character to the maximum movement speed
-        // if ( Math.abs(this.xSpeed) > this.maxMoveSpeed ) {
-        //     // if speed reach limit, use max speed with current direction
-        //     this.xSpeed = this.maxMoveSpeed * this.xSpeed / Math.abs(this.xSpeed);
-        // }
-        
-        // if ( Math.abs(this.ySpeed) > this.maxMoveSpeed ) {
-        //     // if speed reach limit, use max speed with current direction
-        //     this.ySpeed = this.maxMoveSpeed * this.ySpeed / Math.abs(this.ySpeed);
-        // }
-        // // update the
-        // this.node.x += this.xSpeed * dt;
-        // this.node.y += this.ySpeed * dt;
     }
 }

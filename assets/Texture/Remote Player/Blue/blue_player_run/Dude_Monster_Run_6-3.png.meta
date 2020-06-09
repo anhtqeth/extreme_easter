@@ -1,0 +1,36 @@
+{
+  "ver": "2.3.4",
+  "uuid": "2cbb0138-7a26-4c50-bd90-6ec7c85d75b4",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "genMipmaps": false,
+  "packable": true,
+  "width": 32,
+  "height": 32,
+  "platformSettings": {},
+  "subMetas": {
+    "Dude_Monster_Run_6-3": {
+      "ver": "1.0.4",
+      "uuid": "7761e989-1458-4141-9629-28409cecc770",
+      "rawTextureUuid": "2cbb0138-7a26-4c50-bd90-6ec7c85d75b4",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0.5,
+      "offsetY": -2.5,
+      "trimX": 7,
+      "trimY": 6,
+      "width": 19,
+      "height": 25,
+      "rawWidth": 32,
+      "rawHeight": 32,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}
