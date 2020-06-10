@@ -34,24 +34,24 @@ export default class Game extends cc.Component {
     @property(cc.Label)
     scoreDisplay: cc.Label = null;
 
-    public score: 0;
-
     @property(cc.Prefab)
     ColliderPreName: cc.Prefab = null;
 
     playerTile: cc.Vec2 = null;
 
-    // Should you use this?
-    GameState = class {
+    public score: number =0;
+    public currentEggs: number = 0;
+    
+    @property
+    public timer: number =0;
 
-    }   
+    @property(cc.Label)
+    timerDisplay: cc.Label = null;
+
 
     onLoad () {
-        //Set up listener
-        //Set up sender
-        this.score = 0;
         this.initMap(); // init the current map and layers
-        
+        this.setTimer();
         console.log('Array of egg pos:' + this.eggPositionMap());
         console.log('Player Score: ' + this.player.getComponent('Player').getScore());
         console.log('Player Score: ' + this.player.getComponent('score'));
@@ -166,7 +166,8 @@ export default class Game extends cc.Component {
     //Send current game state to server
     //Players Count, Each Player's score, Timer
     sendGameState () {
-        // send Map 
+
+
         //
     }
 
@@ -183,12 +184,31 @@ export default class Game extends cc.Component {
 
     gameOver () {
         this.player.stopAllActions();
-        cc.director.loadScene('game');
+        cc.director.loadScene('gameover');
     }
+
+    setTimer() {
+        this.schedule(function(){
+            this.timer-=1;
+        },1)
+    }
+
+
 
     //Receive Update from Server to render Eggs
     update (dt) {
+        if(cc.director.getScene)
+        if(this.timer == 0) {
+            this.gameOver();
+            return;
+        }
+        // this.timer-= Math.floor(dt/0.6);
+        this.timerDisplay.string = 'Time Left ' + this.timer;
+
         this.updateScore();
+        this.sendGameState();
+
+
         //renderEgg
         // this.autoCollectEgg(this.server.getChildByName('remotePlayer_0'));
         // let eggPos    = new cc

@@ -71,10 +71,13 @@ export default class Server extends cc.Component {
         }
     }
 
+
+
    
     // Receive current game state from local
-    recGameState() {
-
+    updateGameState() {
+        this.game.getComponent('Game').sendGameState();
+        
     }
     
     randEggColor(color: string) {
@@ -118,6 +121,7 @@ export default class Server extends cc.Component {
     }
 
 
+
     genNewPlayer() {
         let playerColors: string[] = ['blue','pink'];
         let randColor = playerColors[Math.floor(Math.random()*playerColors.length)];
@@ -154,6 +158,7 @@ export default class Server extends cc.Component {
     }
 
     update (dt) {
-        
+        if (this.currentEggs < this.maxEgg)
+            this.genNewEgg();
     }
 }

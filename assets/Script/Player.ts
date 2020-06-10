@@ -101,6 +101,7 @@ export default class Player extends cc.Component {
 
     collEggs(other,self) {
         other.node.removeFromParent();
+        this.node.getParent().getComponent('Server').currentEggs-=1;
         this.score += 1;
     }
 
