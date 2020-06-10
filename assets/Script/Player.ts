@@ -103,6 +103,13 @@ export default class Player extends cc.Component {
         other.node.removeFromParent();
         this.score += 1;
     }
+
+    getScore() {
+        return this.score;
+    }
+
+
+
     hitWall(other,self) {
         console.log('Hit Wall');
         // var otherAabb = other.world.aabb;
@@ -113,17 +120,14 @@ export default class Player extends cc.Component {
     }
     onCollisionEnter(other,self) {
         switch(other.tag) {
-            case 1:
+            case 0:
                 this.collEggs(other,self);
                 break;
-            case 2:
+            case 1:
                 this.hitWall(other,self);
                 break;
         }
     }
-
-
-
 
     update (dt) {
         // let currenPos = this.node.getPosition();

@@ -26,6 +26,7 @@ export default class Egg extends cc.Component {
     onPicked() {
         //Refresh Spawn
         //gain score
+        this.node.getParent();
         this.node.destroy;
     }
 

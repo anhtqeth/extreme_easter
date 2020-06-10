@@ -40,7 +40,7 @@ export default class RemotePlayer extends cc.Component {
                     anim.play('blue_player_run');
                     break;
             }
-        } 
+        }
 
         if (type == 'pink') {
             switch(direction) {

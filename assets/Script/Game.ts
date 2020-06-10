@@ -53,6 +53,8 @@ export default class Game extends cc.Component {
         this.initMap(); // init the current map and layers
         
         console.log('Array of egg pos:' + this.eggPositionMap());
+        console.log('Player Score: ' + this.player.getComponent('Player').getScore());
+        console.log('Player Score: ' + this.player.getComponent('score'));
     }
 
     getRemotePlayer() {
@@ -140,26 +142,26 @@ export default class Game extends cc.Component {
         return new cc.Vec2(x,y);
     }
   
-    tileTransition(newTile) {
-        let width = this.map.node.width;
-        let height = this.map.node.height;
-        if (newTile.x < 0 || newTile.x >= width) return;
-        if (newTile.y < 0 || newTile.y >= height) return;
+    // tileTransition(newTile) {
+    //     let width = this.map.node.width;
+    //     let height = this.map.node.height;
+    //     if (newTile.x < 0 || newTile.x >= width) return;
+    //     if (newTile.y < 0 || newTile.y >= height) return;
 
-        // console.log('get Tile GI DAT: '+ this.terrain.getTileGIDAt(newTile));
-        //Boundaries
-        if(this.terrain.getTileGIDAt(newTile)) {
-            return false;
-        }
-        this.playerTile = newTile;
-        this.updatePlayerPos();
-    }
+    //     // console.log('get Tile GI DAT: '+ this.terrain.getTileGIDAt(newTile));
+    //     //Boundaries
+    //     if(this.terrain.getTileGIDAt(newTile)) {
+    //         return false;
+    //     }
+    //     this.playerTile = newTile;
+    //     this.updatePlayerPos();
+    // }
       
-    updatePlayerPos() {
-        let pos = this.ground.getPositionAt(this.playerTile);
-        console.log('Position of ' + this.playerTile + ' in Pixel: ' + pos);
-        this.player.setPosition(pos.x,pos.y);
-    }
+    // updatePlayerPos() {
+    //     let pos = this.ground.getPositionAt(this.playerTile);
+    //     console.log('Position of ' + this.playerTile + ' in Pixel: ' + pos);
+    //     this.player.setPosition(pos.x,pos.y);
+    // }
 
     //Send current game state to server
     //Players Count, Each Player's score, Timer
@@ -170,7 +172,7 @@ export default class Game extends cc.Component {
 
     updateScore() {
         this.score += 1;
-        this.scoreDisplay.string = 'Score ' + this.score;
+        this.scoreDisplay.string = 'Score: ' + this.player.getComponent('Player').getScore();
     }
 
     start () {
@@ -184,11 +186,11 @@ export default class Game extends cc.Component {
         cc.director.loadScene('game');
     }
 
-
     //Receive Update from Server to render Eggs
     update (dt) {
+        this.updateScore();
         //renderEgg
-        this.autoCollectEgg(this.server.getChildByName('remotePlayer_0'));
+        // this.autoCollectEgg(this.server.getChildByName('remotePlayer_0'));
         // let eggPos    = new cc
     }
 }
