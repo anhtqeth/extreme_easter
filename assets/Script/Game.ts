@@ -9,10 +9,10 @@ export default class Game extends cc.Component {
     noPlayers: number = 0;
 
     @property(cc.Node)
-    player: cc.Node = null;
+    server: cc.Node = null;
 
     @property(cc.Node)
-    remotePlayer: cc.Node = null;
+    player: cc.Node = null;
 
     @property
     timeLimit: number = 0;
@@ -27,6 +27,7 @@ export default class Game extends cc.Component {
     @property(cc.TiledLayer)
     terrain: cc.TiledLayer = null;
 
+
     @property(cc.TiledObjectGroup)
     objects: cc.TiledObjectGroup = null;
 
@@ -34,6 +35,9 @@ export default class Game extends cc.Component {
     scoreDisplay: cc.Label = null;
 
     public score: 0;
+
+    @property(cc.Prefab)
+    ColliderPreName: cc.Prefab = null;
 
     playerTile: cc.Vec2 = null;
 
@@ -48,11 +52,44 @@ export default class Game extends cc.Component {
         this.score = 0;
         this.initMap(); // init the current map and layers
         
-        for(let i = 0;i<= this.noPlayers; i++) {
-            // Create Remote Player (does not count local player)
+        console.log('Array of egg pos:' + this.eggPositionMap());
+    }
+
+    getRemotePlayer() {
+        let rPlayers: cc.Node[] = [];
+        for(let i =0;i<3;i++) {
+            // let remotePlayerPos = this.server.getChildByName('remotePlayer_'+i).getPosition();
+            // rPlayerPos.push(remotePlayerPos);
+            let rPlayer = this.server.getChildByName('remotePlayer_'+i);
+            rPlayers.push(rPlayer);
+        }
+        // for (let i = 0;i<rPlayers.length;i++){
+        //     this.node.addChild(rPlayers[i]);
+        // }
+        return rPlayers;
+    }
+
+    autoCollectEgg(rPlayer) {
+        // console.log('Player name: '+rPlayer.name);
+        rPlayer.x+=2;
+        let eggCount  = this.eggPositionMap().length;
+        let eggPosMap = this.eggPositionMap();
+        for(let i=0;i<eggCount;i++){
+            if(rPlayer.x < eggPosMap[i].x){  
+                rPlayer.x += 2; 
+            }
+            //Find next egg
         }
     }
 
+    eggPositionMap() {
+        let eggsPos: cc.Vec2[] = [];
+        for(let i =0;i<6;i++) {
+            let egg = this.server.getChildByName('egg_'+i).getPosition();
+            eggsPos.push(egg);
+        }
+        return eggsPos;
+    }
      /**
          * player_area
          * remote_player_area_1
@@ -61,16 +98,37 @@ export default class Game extends cc.Component {
          * eggs_spawn_area_2
          * eggs_spawn_area_3
      */
+
+
     initMap () {
         let objs       = this.map.getObjectGroup('objects'); 
         let playerObj  = objs.getObject('player_area'); 
-        let playerPos  = new cc.Vec2(playerObj.offset.x ,playerObj.offset.y); 
-        console.log('Player Pos: ' + playerPos);
+        var mapWall = this.map.getObjectGroup('wall');
+        console.log('Map Wall +' + mapWall.getObject('1'));
 
-        let server = new Server();
+        // for (var i = 1; i < 4; i++) {
+        //     var collisionName = i.toString();
+        //     var collider = mapWall.getObject(collisionName);
+        //     var node = cc.instantiate(this.ColliderPreName);
+        //     // var node = new cc.Node();
+        //     node.setAnchorPoint(0.5, 0.5);
+        //     node.x = collider.x;
+        //     node.height = collider.height;
+        //     node.y = collider.y - collider.height;
+        //     node.width = collider.width;
+        //     node.addComponent(cc.BoxCollider);
+        //     node.getComponent(cc.BoxCollider).size = cc.size(collider.width, collider.height);
+        //     node.getComponent(cc.BoxCollider).offset = cc.v2(collider.width / 2, collider.height / 2);
+        //     node.getComponent(cc.BoxCollider).tag = 2;
+        //     this.node.addChild(node);
+        // }
+
+        
+        // let playerPos  = new cc.Vec2(playerObj.offset.x ,playerObj.offset.y); 
+        // console.log('Player Pos: ' + playerPos);
         // this.playerTile = this.getTilePos(playerPos);
         // console.log('Player Tile: ' + this.playerTile);
-        this.updatePlayerPos();
+        // this.updatePlayerPos();
     }
 
     //Get position base on tile location
@@ -130,7 +188,7 @@ export default class Game extends cc.Component {
     //Receive Update from Server to render Eggs
     update (dt) {
         //renderEgg
-       
+        this.autoCollectEgg(this.server.getChildByName('remotePlayer_0'));
         // let eggPos    = new cc
     }
 }

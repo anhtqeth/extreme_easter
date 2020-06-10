@@ -11,8 +11,6 @@ export default class RemotePlayer extends cc.Component {
 
     public score: number = 0;
 
-   
-
     //Remote Player can win
     collectEgg () {
         //Moving according to to the neareast egg 
@@ -67,6 +65,6 @@ export default class RemotePlayer extends cc.Component {
     }
 
     update (dt) {
-        this.collectEgg();
+        // this.collectEgg();
     }
 }

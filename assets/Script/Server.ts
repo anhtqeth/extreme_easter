@@ -46,43 +46,38 @@ export default class Server extends cc.Component {
     @property
     maxEgg: number = 0;
 
+    @property
     noPlayers: number = 0; 
+
+    @property(cc.Node)
+    game: cc.Node = null;
+
+    public hello: string = 'HI! IAM SERVER!';
+
+    currentEggs: number = 0;
+    currentPlayers: number = 0;
+
 
     onLoad () {
         // this.timer = 0;
+        this.noPlayers = 3; // Get this from game
         let currentEgg = 0;
         for(let i = 0;i < this.maxEgg; i++) {
             this.genNewEgg();
             currentEgg += 1;
         }
+        for(let i = 0; i< this.noPlayers;i++){
+            this.genNewPlayer();
+        }
     }
 
-    //Randomly generate new Remote Player
-    playerInit() {
-        let playerColors: string[] = ['blue','pink'];
-        let randColor = playerColors[Math.floor(Math.random()*playerColors.length)];
-        let newPlayer: cc.Node = null;
-        if (randColor == 'blue')
-            newPlayer = cc.instantiate(this.bluePlayerPrefab);
-            else
-            newPlayer = cc.instantiate(this.pinkPlayerPrefab);
-        return newPlayer
-    }
-
+   
     // Receive current game state from local
     recGameState() {
 
     }
-    genNewEgg () {
-        //Random Color Egg
-        let eggColors: string[] = ['cho','blue','red'];
-        let randColor = eggColors[Math.floor(Math.random()*eggColors.length)];
-        let newEgg = this.randEggColor(randColor);
-        newEgg.setPosition(this.getNewEggPosition());
-        this.node.addChild(newEgg);
-    }
     
-    randEggColor(color) {
+    randEggColor(color: string) {
         let newEgg: cc.Node;
         switch(color) {
             case 'cho':
@@ -98,17 +93,49 @@ export default class Server extends cc.Component {
         return newEgg;
     }
 
+    genNewEgg () {
+        //Random Color Egg
+        let eggColors: string[] = ['cho','blue','red'];
+        let randColor = eggColors[Math.floor(Math.random()*eggColors.length)];
+        let newEgg = this.randEggColor(randColor);
+        newEgg.name = 'egg_' + this.currentEggs;
+        newEgg.setPosition(this.getRandomPosition());
+        this.node.addChild(newEgg);
+        this.currentEggs+=1;
+    }
+     //Randomly generate new Remote Player
+     randPlayerColor(color: string) {
+        let newPlayer: cc.Node;
+        switch(color){
+            case 'blue':
+                newPlayer = cc.instantiate(this.bluePlayerPrefab);
+                break;
+            case 'pink':
+                newPlayer = cc.instantiate(this.pinkPlayerPrefab);
+                break;
+        }
+        return newPlayer
+    }
+
+
+    genNewPlayer() {
+        let playerColors: string[] = ['blue','pink'];
+        let randColor = playerColors[Math.floor(Math.random()*playerColors.length)];
+        let newPlayer = this.randPlayerColor(randColor);
+        newPlayer.name = 'remotePlayer_'+ this.currentPlayers;
+        newPlayer.setPosition(this.getRandomPosition());
+        this.node.addChild(newPlayer);
+        this.currentPlayers+=1;
+    }
+
     //Send this location to Client
-    getNewEggPosition() {
+    getRandomPosition() {
         let randX = 0;
         let randY = 0;
         //Modify this to get correct tile position
         // console.log('Y value: ' + randY);
-        let maxY = 640/2;  // A random tile on map
-        console.log('max Y: ' + this.node.height/2);
-        let maxX = 960/2;
-        console.log('max X: ' + this.node.width/2);
-
+        let maxY = 640/2-32;  // A random tile on map
+        let maxX = 960/2-32;
         // console.log('Max X value: ' + maxX);
         randX = (Math.random() * Math.floor(maxX));
         randY = (Math.random() * Math.floor(maxY));

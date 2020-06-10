@@ -131,13 +131,15 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": null,
+    "_defaultClip": {
+      "__uuid__": "91f60263-f9aa-459a-9ae4-4d7b6c008fe7"
+    },
     "_clips": [
       {
-        "__uuid__": "91f60263-f9aa-459a-9ae4-4d7b6c008fe7"
+        "__uuid__": "b1461583-772a-415c-bd67-dfdeaef48584"
       },
       {
-        "__uuid__": "b1461583-772a-415c-bd67-dfdeaef48584"
+        "__uuid__": "91f60263-f9aa-459a-9ae4-4d7b6c008fe7"
       }
     ],
     "playOnLoad": true,

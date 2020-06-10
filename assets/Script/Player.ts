@@ -17,6 +17,8 @@ export default class Player extends cc.Component {
 
     xSpeed:   number = 0;
     ySpeed:   number = 0; 
+
+    public score: number = 0;
     
     @property()
     accel:    number = 0;
@@ -27,6 +29,8 @@ export default class Player extends cc.Component {
         this.movRight = false;
         this.movUp    = false;
         this.movDown  = false;
+
+        this.score = 0;
 
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN,this.onKeyDown,this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP,this.onKeyUp,this);
@@ -97,22 +101,39 @@ export default class Player extends cc.Component {
 
     collEggs(other,self) {
         other.node.removeFromParent();
+        this.score += 1;
     }
+    hitWall(other,self) {
+        console.log('Hit Wall');
+        // var otherAabb = other.world.aabb;
+        // var otherPreAabb = other.world.preAabb.clone();
+        // var selfAabb = self.world.aabb;
 
-    onCollisionEgg (other,self) {
-        console.log("Colliding egg");
-        //++ Score
+        // this.node.x -= Math.floor(Math.abs(otherAabb.xMin - selfAabb.xMax));
     }
-
     onCollisionEnter(other,self) {
-        console.log('hitting something');
-        other.node.removeFromParent();
+        switch(other.tag) {
+            case 1:
+                this.collEggs(other,self);
+                break;
+            case 2:
+                this.hitWall(other,self);
+                break;
+        }
     }
+
+
 
 
     update (dt) {
-        if(this.movUp){
-            this.node.y += 2;
+        // let currenPos = this.node.getPosition();
+        // console.log('Player pos: '+currenPos);
+        if(this.node.y !== 430)
+        {
+            if(this.movUp){
+                this.node.y += 2;
+            }
+            
         }
         if (this.movDown) {
             this.node.y -= 2;

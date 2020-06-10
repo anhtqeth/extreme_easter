@@ -32,8 +32,8 @@ export default class Egg extends cc.Component {
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        let ani = this.getComponent(cc.Animation);
-        ani.play();
+        // let ani = this.getComponent(cc.Animation);
+        // ani.play();
     }
 
     start () {

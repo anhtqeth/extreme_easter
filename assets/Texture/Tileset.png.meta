@@ -1,6 +1,6 @@
 {
   "ver": "2.3.4",
-  "uuid": "d1564fe9-4082-43c6-9a13-437581c1c04d",
+  "uuid": "7ed98dd5-adf6-4b64-836f-614b7df01fd0",
   "type": "sprite",
   "wrapMode": "clamp",
   "filterMode": "bilinear",
@@ -13,8 +13,8 @@
   "subMetas": {
     "Tileset": {
       "ver": "1.0.4",
-      "uuid": "bae42398-137d-43b9-b442-aa68da36fe60",
-      "rawTextureUuid": "d1564fe9-4082-43c6-9a13-437581c1c04d",
+      "uuid": "8152f394-8f3d-411d-bc91-25c2797d8b94",
+      "rawTextureUuid": "7ed98dd5-adf6-4b64-836f-614b7df01fd0",
       "trimType": "auto",
       "trimThreshold": 1,
       "rotated": false,
