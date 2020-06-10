@@ -2,6 +2,8 @@
 
 Built with Cocos Creator (Type Script)
 
+Build can be located at /web_build folder. This is built by using cocos creator web-desktop build option.
+
 ## Current features
 - Count Down Timer
 - Number of Players can be set as a property of Server Script
